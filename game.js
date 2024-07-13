@@ -4,6 +4,12 @@ const state = {
   debugMode: false,
 
   oldTimestamp: 0,
+  models: {
+    asteroid: [[-20, -20], [-10, -25], [10, -24], [22, -10],
+               [ 18,   0], [ 22,  13], [18,  20], [ 3,  24],
+               [-19,  18], [-24,   0]],
+    player: []
+  },
   asteroids: []
 };
 
@@ -58,6 +64,7 @@ function run(timestamp) {
 
   ctx.font = "18px monospace";
   ctx.fillStyle = 'white';
+  ctx.strokeStyle = 'white';
 
   if (state.debugMode) {
     let fps = Math.round(1000 / (timestamp - state.oldTimestamp))
@@ -67,7 +74,19 @@ function run(timestamp) {
   }
 
   for (const asteroid of state.asteroids) {
-    ctx.fillRect(...asteroid);
+    ctx.beginPath();
+    ctx.moveTo(
+      state.models.asteroid[0][0] + asteroid[0],
+      state.models.asteroid[0][1] + asteroid[1],
+    );
+    for (let i = 1; i < state.models.asteroid.length; i++) {
+      ctx.lineTo(
+        state.models.asteroid[i][0] + asteroid[0],
+        state.models.asteroid[i][1] + asteroid[1],
+      );
+    }
+    ctx.closePath()
+    ctx.stroke();
   }
 
   state.oldTimestamp = timestamp;
