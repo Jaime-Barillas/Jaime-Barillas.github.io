@@ -8,9 +8,27 @@ const state = {
     asteroid: [[-20, -20], [-10, -25], [10, -24], [22, -10],
                [ 18,   0], [ 22,  13], [18,  20], [ 3,  24],
                [-19,  18], [-24,   0]],
-    player: []
+    player: {
+      apple: [// Stick
+              [ -3, -24], [ -1, -30], [ -1, -39], [  2, -39], [  2, -30], [  0, -24],
+              // Body up to right-most point.
+              [ 15, -24], [ 24, -15], [ 27,  -1],
+              // Body up to middle-most bottom point.
+              [ 22,  16], [ 15,  26], [  6,  30], [  0,  28],
+              // Body up to left-most point.
+              [ -6,  30], [ -15,  26], [-22,  16], [-27,   3],
+              // Rest of left body.
+              [-25, -15], [-18, -24]]
+    }
   },
-  asteroids: []
+  input: {
+    left:  false,
+    right: false,
+    up:    false,
+    down:  false,
+  },
+  asteroids: [],
+  player: { x: 0, y: 0, angle: 0 }
 };
 
 canvas.width = canvas.clientWidth;
@@ -23,7 +41,8 @@ try {
   resizeObserver.observe(canvas);
 }
 
-window.addEventListener('keydown', input);
+window.addEventListener('keydown', keydown);
+window.addEventListener('keyup', keyup);
 window.addEventListener('load', setup);
 
 function resize(entries) {
@@ -40,9 +59,49 @@ function resize(entries) {
   }
 }
 
-function input(ev) {
+function keydown(ev) {
   if (ev.code == 'Escape') {
     state.debugMode = !state.debugMode;
+  }
+
+  switch (ev.code) {
+    case 'ArrowLeft':
+    case 'KeyA':
+      state.input.left = true;
+      break;
+    case 'ArrowRight':
+    case 'KeyD':
+      state.input.right = true;
+      break;
+    case 'ArrowUp':
+    case 'KeyW':
+      state.input.up = true;
+      break;
+    case 'ArrowDown':
+    case 'KeyS':
+      state.input.down = true;
+      break;
+  }
+}
+
+function keyup(ev) {
+  switch (ev.code) {
+    case 'ArrowLeft':
+    case 'KeyA':
+      state.input.left = false;
+      break;
+    case 'ArrowRight':
+    case 'KeyD':
+      state.input.right = false;
+      break;
+    case 'ArrowUp':
+    case 'KeyW':
+      state.input.up = false;
+      break;
+    case 'ArrowDown':
+    case 'KeyS':
+      state.input.down = false;
+      break;
   }
 }
 
@@ -55,6 +114,10 @@ function setup(ev) {
       20
     ]);
   }
+
+  state.player.x = (canvas.width / 2);
+  state.player.y = (canvas.height / 2);
+  state.player.angle = 0;
 
   window.requestAnimationFrame(run);
 }
@@ -73,6 +136,10 @@ function run(timestamp) {
     ctx.fillText(`canvas-height: ${canvas.height}`, 20, 60);
   }
 
+
+  ///////////////////////////
+  // Draw Screen
+  ///////////////////////////
   for (const asteroid of state.asteroids) {
     ctx.beginPath();
     ctx.moveTo(
@@ -85,9 +152,33 @@ function run(timestamp) {
         state.models.asteroid[i][1] + asteroid[1],
       );
     }
-    ctx.closePath()
+    ctx.closePath();
     ctx.stroke();
   }
+
+  ctx.beginPath();
+  ctx.moveTo(
+    state.models.player.apple[0][0] + state.player.x,
+    state.models.player.apple[0][1] + state.player.y,
+  );
+  for (let i = 1; i < state.models.player.apple.length; i++) {
+    ctx.lineTo(
+      state.models.player.apple[i][0] + state.player.x,
+      state.models.player.apple[i][1] + state.player.y,
+    );
+  }
+  ctx.closePath();
+  ctx.stroke();
+
+
+  ///////////////////////////
+  // Handle Inputs
+  ///////////////////////////
+  if (state.input.left)  state.player.x -= 1;
+  if (state.input.right) state.player.x += 1;
+  if (state.input.up)    state.player.y -= 1;
+  if (state.input.down)  state.player.y += 1;
+
 
   state.oldTimestamp = timestamp;
   window.requestAnimationFrame(run);
