@@ -2,6 +2,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const state = {
   debugMode: false,
+  running: false,
 
   oldTimestamp: 0,
   models: {
@@ -43,7 +44,6 @@ try {
 
 window.addEventListener('keydown', keydown);
 window.addEventListener('keyup', keyup);
-window.addEventListener('load', setup);
 
 function resize(entries) {
   for (const entry of entries) {
@@ -56,6 +56,17 @@ function resize(entries) {
         canvas.height = entry.contentBoxSize[0].blockSize * window.devicePixelRatio;
       }
     }
+  }
+
+  // It may be the case that the window 'load' event is triggered before the
+  // browser resizes the canvas to cover the entire window (at least on Vivaldi.)
+  // We want the game to start after the 'final' resize event to make sure the
+  // inital positions of the asteroids and player are accurately calculated.
+  // NOTE: This does rely on the canvas changing size the moment the web page
+  // is loaded.
+  if (state.running == false) {
+    state.running = true;
+    setup_and_run();
   }
 }
 
@@ -105,7 +116,7 @@ function keyup(ev) {
   }
 }
 
-function setup(ev) {
+function setup_and_run() {
   for (const _ of Array(10)) {
     state.asteroids.push([
       canvas.width * Math.random(),
