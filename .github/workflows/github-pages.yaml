@@ -1,0 +1,38 @@
+name: "Build & Deploy Site"
+run-name: "Build & Deploy Site"
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    container:
+      image: clojure:tools-deps-1.11.4.1474-bullseye
+    steps:
+      - name: "checkout site"
+        uses: actions/checkout@v4
+      - name: "build site"
+        run: clj -X:build
+      - name: "upload site"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./target/powerpack
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-upload
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: "deploy site"
+        id: deployment
+        uses: actions/deploy-pages@v4
+
