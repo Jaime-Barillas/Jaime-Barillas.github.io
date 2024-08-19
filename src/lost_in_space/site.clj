@@ -16,7 +16,8 @@
                       :paths [#"/fonts/.+\.woff2"]}]
    :optimus/bundles {"styles.css"
                       {:public-dir "public"
-                       :paths [#"/css/.+\.css"]}}})
+                       :paths ["/css/reset.css"
+                               #"/css/.+\.css"]}}})
 
 (defn export! [opts] (export/export! config))
 
