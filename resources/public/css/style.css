@@ -1,0 +1,32 @@
+:root {
+    --fg-1: hsl(0 0 95);
+    --fg-2: hsl(0 0 75);
+    --fg-3: hsl(0 0 55);
+    --theme-1: #45504a;
+    --theme-2: #39453f;
+    --theme-3: #313c36;
+    --theme-4: #24302b;
+    --theme-5: #1e2823;
+}
+
+html {
+    background-color: var(--theme-4);
+    color: var(--fg-1);
+}
+
+a {
+    color: var(--fg-1);
+}
+
+a:visited {
+    color: var(--fg-2);
+}
+
+a:hover {
+    color: var(--fg-3);
+}
+
+.glow-text {
+    text-shadow: 0 0 0.2rem var(--fg-3);
+}
+

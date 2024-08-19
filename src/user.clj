@@ -1,10 +1,10 @@
-(ns lost-in-space.dev
+(ns user
   (:require
-    [lost-in-space.core :as blog]
+    [lost-in-space.site :as site]
     [powerpack.dev :as dev]))
 
 (defmethod dev/configure! :default []
-  blog/config)
+  site/config)
 
 (comment
   (dev/start)
