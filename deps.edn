@@ -1,7 +1,4 @@
 {:paths ["src" "resources"]
- :deps {org.clojure/clojure {:mvn/version "1.11.1"}
-        no.cjohansen/powerpack {:mvn/version "2024.06.26"}}
-:aliases  {:dev {:extra-deps {nrepl/nrepl {:mvn/version "1.3.0"}
-                              cider/cider-nrepl {:mvn/version "0.49.0"}}
-                 :main-opts ["-m" "nrepl.cmdline" "--midleware" "[cider.nrepl/cider-middleware]"]}
-           :build {:exec-fn lost-in-space.site/export!}}}
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        no.cjohansen/powerpack {:mvn/version "2025.01.21"}}
+:aliases  {:build {:exec-fn lost-in-space.site/export!}}}

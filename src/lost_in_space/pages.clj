@@ -1,5 +1,6 @@
 (ns lost-in-space.pages
   (:require
+    [powerpack.hiccup :as h]
     [powerpack.ingest :as ingest]
     [powerpack.markdown :as md]))
 
@@ -22,7 +23,8 @@
     :html
     [:html
      [:head]
-     (:page/body page)]
+     [:body
+      (h/unescape (:page/body page))]]
 
     :md
     [:html
