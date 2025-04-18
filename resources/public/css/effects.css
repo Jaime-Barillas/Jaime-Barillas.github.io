@@ -1,0 +1,48 @@
+/**************/
+/* Animations */
+/**************/
+
+.anim-frontpage {
+    overflow: hidden;
+
+    h1, h2 {
+        transition-property: scale;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
+    }
+
+    h2 {
+        /* NOTE: Bit of a hack. -50% y gives good results. */
+        transform-origin: 50% -50%;
+    }
+}
+
+.anim-frontpage:hover {
+    h1, h2 {
+        /* TODO: Check that content is completely scaled out for screens of
+         * higher resolution. */
+        scale: 100;
+    }
+}
+
+.anim-game-start-msg {
+    opacity: 0%;
+
+    animation-name: anim-game-start-msg-blink;
+    animation-delay: 5s;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in;
+}
+
+@keyframes anim-game-start-msg-blink {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
