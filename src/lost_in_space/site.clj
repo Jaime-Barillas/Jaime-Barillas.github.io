@@ -17,7 +17,8 @@
    :optimus/bundles {"styles.css"
                       {:public-dir "public"
                        :paths ["/css/reset.css"
-                               #"/css/.+\.css"]}}})
+                               #"/css/.+\.css"]}}
+   :optimus/options {:minify-css-assets? false}})
 
 (defn export! [opts] (export/export! config))
 
