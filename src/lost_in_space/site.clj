@@ -13,7 +13,9 @@
    :powerpack/create-ingest-tx #'pages/add-page-kind
 
    :optimus/assets [{:public-dir "public"
-                      :paths [#"/fonts/.+\.woff2"]}]
+                      :paths [#"/fonts/.+\.woff2"]}
+                    {:public-dir "public"
+                     :paths [#"/js/.+\.js"]}]
    :optimus/bundles {"styles.css"
                       {:public-dir "public"
                        :paths ["/css/reset.css"

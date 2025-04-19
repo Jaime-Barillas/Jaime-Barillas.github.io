@@ -71,23 +71,16 @@ html {
     color: var(--text-1);
 }
 
-.margin-auto {
-    margin: auto;
-}
-
-.center-text {
-    text-align: center;
-}
-
 /************************/
 /* Page Specific Styles */
 /************************/
 
 /* Front Page */
-.center-frontpage {
+#homepage {
     position: absolute;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 
     display: grid;
     grid-template-rows: 1fr auto 1fr;
@@ -96,17 +89,65 @@ html {
         "tl tc tr"
         "cl c  cr"
         "bl bc br";
+    row-gap: 2rem;
 
-    > .place-center {
-        grid-area: c;
+    > h1, > h2 {
+        transition-property: scale;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
     }
 
-    > .place-bottom-center {
+    > #homepage-title {
+        margin: auto;
+        text-align: center;
+        grid-area: c;
+
+    }
+
+    > #homepage-start-msg {
+        text-align: center;
+        opacity: 0%;
         grid-area: bc;
+
+        /* TODO: y-coord is arbitrary, is there some way to calculate it? */
+        transform-origin: 50% -50%;
+    }
+    > #homepage-start-msg.a-homepage-start-msg {
+        animation-name: a-homepage-start-msg-blink;
+        animation-delay: 5s;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in;
+    }
+
+    .t-homepage-zoom {
+        scale: 100;
     }
 }
 
-.game-start-msg {
-    margin-top: 2rem;
+@keyframes a-homepage-start-msg-blink {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+#lost-in-space {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    scale: 0%;
+
+    transition-property: scale;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
+}
+
+#lost-in-space.t-lost-in-space-zoom {
+    scale: 1;
 }
 
