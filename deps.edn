@@ -1,4 +1,4 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.12.0"}
-        no.cjohansen/powerpack {:mvn/version "2025.01.21"}}
+        no.cjohansen/powerpack {:mvn/version "2025.05.21"}}
 :aliases  {:build {:exec-fn lost-in-space.site/export!}}}
