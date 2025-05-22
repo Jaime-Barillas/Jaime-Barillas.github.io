@@ -104,6 +104,21 @@ html {
 
     }
 
+    > #homepage-excursus {
+        grid-area: bl;
+        margin-top: 2em;
+        margin-left: auto;
+        font-family: var(--font-title);
+        font-size: 2em;
+    }
+
+    > #homepage-projects {
+        font-family: var(--font-title);
+        margin-top: 2em;
+        font-size: 2em;
+        grid-area: br;
+    }
+
     > #homepage-start-msg {
         text-align: center;
         opacity: 0%;
