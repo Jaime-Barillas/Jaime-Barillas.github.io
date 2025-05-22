@@ -20,7 +20,8 @@
                       {:public-dir "public"
                        :paths ["/css/reset.css"
                                #"/css/.+\.css"]}}
-   :optimus/options {:minify-css-assets? false}})
+   :optimus/options {:minify-css-assets? false
+                     :minify-js-assets? false}})
 
 (defn export! [opts] (export/export! config))
 
