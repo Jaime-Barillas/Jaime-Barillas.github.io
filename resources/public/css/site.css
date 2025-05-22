@@ -25,6 +25,7 @@
     --theme-3: oklch(34.0% 0.0187 167.75);
     --theme-4: oklch(30.0% 0.0187 167.75);
     --theme-5: oklch(27.0% 0.0187 167.75);
+    --link-hover-text: oklch(0.7698 0.0329 159.97);
 
     --font-body: CothamSansRegular, serif;
     --font-title: Bagnard, sans;
@@ -57,7 +58,7 @@ a {
     }
 
     &:hover {
-        color: var(--text-3);
+        color: var(--link-hover-text);
     }
 }
 
