@@ -1,0 +1,17 @@
+base_url = "https://lost-in-space.xyz"
+compile_sass = false
+build_search_index = false
+output_dir = "public"
+
+[markdown]
+highlight_code = true
+error_on_missing_highlight = true
+extra_syntaxes_and_themes = ["syntaxes"]
+highlight_theme = "css"
+highlight_themes_css = [
+  { theme = "base16-ocean-light", filename = "css/syntax-theme-light.css" },
+  { theme = "base16-ocean-dark", filename = "css/syntax-theme-dark.css" },
+]
+
+[extra]
+# Put all your custom variables here
