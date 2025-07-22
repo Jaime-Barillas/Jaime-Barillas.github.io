@@ -2,6 +2,7 @@ base_url = "https://lost-in-space.xyz"
 compile_sass = false
 build_search_index = false
 output_dir = "public"
+minify_html = true
 
 [markdown]
 highlight_code = true
