@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
-# Hello,
-World!
+{% for page in section.pages %}
+  <div>
+    <h2>{{page.title}}</h2>
+    <p>{{page.description}}</p>
+  </div>
+{% endfor %}
 {% endblock body %}
