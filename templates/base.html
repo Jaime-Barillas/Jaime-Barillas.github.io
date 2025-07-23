@@ -20,17 +20,23 @@
   {% endblock head %}
 </head>
 <body>
-{% if not homepage %}
-  <nav>
-    Header
-  </nav>
-{% endif %}
-  {% block body %}
-  {% endblock body %}
-  {% if not homepage %}
+  <main>
+    {% if not homepage %}
+    <nav class="nav-bar">
+      <a class="nav-bar logo" href="/">JB</a>
+      <div class="nav-bar sections">
+        <a class="nav-bar section" href="/notes">Notes</a>
+        <a class="nav-bar section" href="/projects">Projects</a>
+      </div>
+    </nav>
+    {% endif %}
+    {% block body %}
+    {% endblock body %}
+    {% if not homepage %}
     <footer>
-    Footer
+      Footer
     </footer>
-  {% endif %}
+    {% endif %}
+  </main>
 </body>
 </html>
