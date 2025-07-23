@@ -355,6 +355,12 @@ footer {
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
+
+        transition-property: scale;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
+        /* TODO: both coords are arbitrary, is there some way to calculate them? */
+        transform-origin: 150% -50%;
     }
 
     > #homepage-projects {
@@ -362,6 +368,13 @@ footer {
         font-family: var(--font-title);
         font-size: 2em;
         padding-top: 2em;
+        opacity: 100% !important;
+
+        transition-property: scale;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
+        /* TODO: both coords are arbitrary, is there some way to calculate them? */
+        transform-origin: -50% -50%;
     }
 
     > #homepage-start-msg {

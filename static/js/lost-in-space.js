@@ -3,6 +3,8 @@
 const homepage_container = document.getElementById('homepage');
 const homepage_title = document.getElementById('homepage-title');
 const homepage_start_msg = document.getElementById('homepage-start-msg');
+const homepage_projects_link = document.getElementById('homepage-projects');
+const homepage_notes_link = document.getElementById('homepage-excursus');
 const canvas = document.getElementById('lost-in-space');
 const ctx = canvas.getContext('2d');
 const state = {
@@ -86,7 +88,16 @@ function resize(entries) {
 }
 
 function keydown(ev) {
-  if (ev.code == 'Escape') {
+  if (ev.code == 'Escape' && state.running) {
+    state.running = false;
+    homepage_title.classList.remove('t-homepage-zoom');
+    homepage_start_msg.classList.remove('t-homepage-zoom');
+    homepage_projects_link.classList.remove('t-homepage-zoom');
+    homepage_notes_link.classList.remove('t-homepage-zoom');
+    canvas.classList.remove('t-lost-in-space-zoom');
+  }
+
+  if (ev.code == 'KeyZ') {
     state.debugMode = !state.debugMode;
   }
 
@@ -96,6 +107,8 @@ function keydown(ev) {
         // homepage_container.classList.add('t-play');
         homepage_title.classList.add('t-homepage-zoom');
         homepage_start_msg.classList.add('t-homepage-zoom');
+        homepage_projects_link.classList.add('t-homepage-zoom');
+        homepage_notes_link.classList.add('t-homepage-zoom');
         canvas.classList.add('t-lost-in-space-zoom');
         state.running = true;
         setup();
@@ -150,6 +163,13 @@ window.addEventListener('keyup', keyup);
 /********/
 
 function setup() {
+  state.debugmode = false;
+  state.input.left = false;
+  state.input.right = false;
+  state.input.up = false;
+  state.input.down = false;
+  state.asteroids = [];
+
   for (const _ of Array(10)) {
     state.asteroids.push({
       pos: {
@@ -235,5 +255,5 @@ function run(timestamp) {
   draw(timestamp);
 
   state.oldTimestamp = timestamp;
-  window.requestAnimationFrame(run);
+  if (state.running) window.requestAnimationFrame(run);
 }
