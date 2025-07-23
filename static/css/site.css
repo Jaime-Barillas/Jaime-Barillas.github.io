@@ -36,6 +36,12 @@
     --font-size-4: 1.5rem;
     --font-size-5: 1.0rem;
     --font-size-6: 1.0rem;
+
+    --spacing-1: 1.0rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.25rem;
+
+    --border-radius: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -132,7 +138,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-title);
-    margin-top: 1rem;
+    margin-top: var(--spacing-1);
 }
 h1 { font-size: var(--font-size-1); }
 h2 { font-size: var(--font-size-2); }
@@ -210,11 +216,14 @@ ol {
 }
 
 pre {
-    display: inline-block;
-    margin: 0rem auto;
-    padding: 1rem;
-    width: 360px;
-    border-radius: 0.5rem;
+    display: block;
+    margin: var(--spacing-1) auto;
+    padding: var(--spacing-1);
+    max-width: 680px;
+    border-style: solid;
+    border-width: 0.15rem;
+    border-color: var(--color-bg-2);
+    border-radius: var(--border-radius);
     overflow-x: scroll;
 
     scrollbar-color: var(--color-theme-1) var(--color-bg-2);
@@ -233,7 +242,7 @@ em, i {
 }
 
 p {
-    margin: 1rem 0rem;
+    margin: var(--spacing-1) 0rem;
 }
 
 ::selection{
@@ -247,7 +256,7 @@ p {
 /*********************/
 
 footer {
-    margin-top: 1rem;
+    margin-top: var(--spacing-1);
     text-align: center;
     color: var(--color-bg-2);
 }
@@ -264,7 +273,7 @@ footer {
     a:hover { color: var(--color-text-1); }
 
     .logo {
-        padding: 0.25rem 1rem;
+        padding: var(--spacing-3) var(--spacing-1);
         font-family: var(--font-title);
         font-size: var(--font-size-3);
         border-bottom: solid 0.25rem;
@@ -279,10 +288,10 @@ footer {
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: baseline;
-        gap: 0.5rem;
+        gap: var(--spacing-2);
 
         .section {
-            padding: 0.25rem 1rem;
+            padding: var(--spacing-3) var(--spacing-1);
             font-family: var(--font-title);
             font-size: var(--font-size-4);
             border-bottom: solid 0.25rem;
