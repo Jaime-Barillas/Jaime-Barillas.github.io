@@ -251,6 +251,7 @@ main {
     /* TODO: Determine a good max-width size. */
     max-width: 60rem;
     margin: 0rem auto;
+    padding: var(--spacing-2);
 }
 
 header {
