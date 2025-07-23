@@ -425,3 +425,43 @@ footer {
     scale: 1;
 }
 
+/* Section Pages */
+.projects {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-auto-rows: 10rem;
+    gap: 1rem;
+}
+
+@media(min-width: 950px) {
+    .projects {
+        grid-template-columns: repeat(2, 1fr 2fr);
+    }
+}
+
+.project-thumbnail {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    > picture > img {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-height: 100%;
+    }
+}
+
+.project-description {
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, var(--color-text-1) 95%, transparent 100%);
+
+    text-decoration: none;
+    &:visited { color: var(--color-text-1); }
+    &:hover { color: var(--color-theme-1); }
+
+    > header {
+        font-size: var(--font-size-3);
+    }
+}

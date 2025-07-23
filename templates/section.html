@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block body %}
 <main class="section">
-{% for page in section.pages %}
-  <div>
-    <h1>{{page.title}}</h1>
-    <p>{{page.description}}</p>
-  </div>
-{% endfor %}
+  <section class="projects">
+  {% for page in section.pages %}
+    <div class="project-thumbnail">
+      <picture>
+        <source srcset="{{page.extra | get(key='thumbnail', default='')}}"/>
+        <source srcset="{{get_url(path='images/logo-dark.png')}}" media="(prefers-color-scheme: dark)"/>
+        <img src="{{get_url(path='images/logo-light.png')}}" alt="{{page.title}} project thumbnail."/>
+      </picture>
+    </div>
+    <a class="project-description" href="{{page.path}}" title="{{page.title}} - {{page.description}}">
+      <header>{{page.title}}</header>
+      <p>{{page.description}}</p>
+    </a>
+  {% endfor %}
+  </section>
 </main>
 {% endblock body %}
