@@ -232,6 +232,15 @@ em, i {
     font-style: oblique;
 }
 
+p {
+    margin: 1rem 0rem;
+}
+
+::selection{
+    background-color: var(--color-theme-1);
+    color: oklch(0.283 0.029 281.56);
+}
+
 
 /*********************/
 /* Cross Site Styles */
