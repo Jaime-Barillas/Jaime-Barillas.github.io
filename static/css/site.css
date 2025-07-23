@@ -130,9 +130,6 @@ html {
 }
 
 body {
-    /* TODO: Determine a good max-width size. */
-    max-width: 60rem;
-    margin: 0rem auto;
     line-height: 1.2;
 }
 
@@ -250,16 +247,29 @@ p {
     color: oklch(0.283 0.029 281.56);
 }
 
+main {
+    /* TODO: Determine a good max-width size. */
+    max-width: 60rem;
+    margin: 0rem auto;
+}
 
-/*********************/
-/* Cross Site Styles */
-/*********************/
+header {
+    max-width: 60rem;
+    margin: 0rem auto;
+}
 
 footer {
+    max-width: 60rem;
+    margin: 0rem auto;
     margin-top: var(--spacing-1);
     text-align: center;
     color: var(--color-bg-2);
 }
+
+
+/*********************/
+/* Cross Site Styles */
+/*********************/
 
 .nav-bar {
     display: flex;

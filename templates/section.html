@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
-<div>
+<main class="section">
 {% for page in section.pages %}
   <div>
     <h1>{{page.title}}</h1>
     <p>{{page.description}}</p>
   </div>
 {% endfor %}
-</div>
+</main>
 {% endblock body %}
