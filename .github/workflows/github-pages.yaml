@@ -11,17 +11,22 @@ concurrency:
 jobs:
   build-and-upload:
     runs-on: ubuntu-latest
-    container:
-      image: clojure:tools-deps-1.11.4.1474-bullseye
     steps:
       - name: "checkout site"
         uses: actions/checkout@v4
+      - name: "install zola"
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          mkdir -p .bin
+          curl -sSLo .bin/zola.tar.gz https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-musl.tar.gz
+          tar -xzf .bin/zola.tar.gz -C .bin
+          echo "$GITHUB_WORKSPACE/.bin" >> $GITHUB_PATH
       - name: "build site"
-        run: clj -X:build
+        run: "echo $PATH; cat $GITHUB_PATH; pwd; ls -a; zola build"
       - name: "upload site"
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./target/powerpack
+          path: ./public
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-upload
