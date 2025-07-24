@@ -22,7 +22,7 @@ jobs:
           tar -xzf .bin/zola.tar.gz -C .bin
           echo "$GITHUB_WORKSPACE/.bin" >> $GITHUB_PATH
       - name: "build site"
-        run: "echo $PATH; cat $GITHUB_PATH; pwd; ls -a; zola build"
+        run: "zola build"
       - name: "upload site"
         uses: actions/upload-pages-artifact@v3
         with:
